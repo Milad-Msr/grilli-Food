@@ -32,6 +32,11 @@ addEventOnElements(navTogglers, 'click', toggleNavbar);
 
 
 
+
+
+
+
+
 const header = document.querySelector("[data-header]");
 let lastScrollpos = 0;
 

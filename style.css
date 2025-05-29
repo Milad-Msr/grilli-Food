@@ -382,7 +382,6 @@
 /*=•=•=•=••=•=•=•=•=       Header       =•=•=••=•=•=•=•=•=•=*/
 /*•=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=•=•=••=•=*/
 
-  .overlay,
   .header .btn {
     display: none;
   }
@@ -518,11 +517,11 @@
     color: var(--gold-crayola);
     transform: translateX(20px);
   }
-
+  
   .navbar-link .separator {
-    position: absolute;
     top: 50%;
     left: 0;
+    position: absolute; 
     transform: translateY(-50%) rotate(45deg);
     opacity: 0;
     transition: var(--transition-1);
@@ -540,6 +539,10 @@
     margin-block: 10px;
   }
 
+  .navbar .body-4 {
+    color: var(--quick-silver);
+  }
+
   .sidebar-link {
     transition: var(--transition-1);
   }
@@ -553,10 +556,31 @@
     margin-inline: auto;
   }
 
-  .navbar .body-4 {
-    color: var(--quick-silver);
+  .navbar .contact-label {
+    margin-block-end: 10px;
   }
 
+  .navbar::-webkit-scrollbar-thumb {
+    background-color: var(--white-alpha-10);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--black-alpha-80);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-2);
+    z-index: 1;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
 
 
 

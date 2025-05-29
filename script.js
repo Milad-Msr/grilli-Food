@@ -8,3 +8,37 @@
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
 
 
+
+/*=•=•=•=••=•=•=•=  Navbar  =•=••=•=•=•=•=•=*/
+  const navbar = document.querySelector('[data-navbar]');
+  const overlay = document.querySelector('[data-overlay]');
+  const navTogglers = document.querySelectorAll('[data-nav-toggler]');
+
+  for (let toggler of navTogglers) {
+    toggler.addEventListener('click', () => {
+      navbar.classList.toggle('active')
+      overlay.classList.toggle('active')
+      document.body.classList.toggle('nav-active')
+    });
+  };
+/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
+
+
+
+
+/*=•=•=•=••=•=•=•=  Header  =•=••=•=•=•=•=•=*/
+  const header = document.querySelector('[data-header]');
+  
+  const hideHeader = () => {                
+    let lastScrollPos = 0;
+    const isScrollBottom = lastScrollPos < window.scrollY;
+    isScrollBottom ? header.classList.add('hide') : header.classList.remove('hide')
+    lastScrollPos = window.scrollY;
+  };
+
+  window.addEventListener("scroll", () => {
+    window.scrollY >= 50 
+    ? (header.classList.add('active'), hideHeader()) 
+    : header.classList.remove('active')
+  });
+/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/

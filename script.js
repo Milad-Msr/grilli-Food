@@ -28,17 +28,21 @@
 
 /*=•=•=•=••=•=•=•=  Header  =•=••=•=•=•=•=•=*/
   const header = document.querySelector('[data-header]');
+
+  let lastScrollPos = 0;
   
   const hideHeader = () => {                
-    let lastScrollPos = 0;
     const isScrollBottom = lastScrollPos < window.scrollY;
     isScrollBottom ? header.classList.add('hide') : header.classList.remove('hide')
     lastScrollPos = window.scrollY;
   };
 
   window.addEventListener("scroll", () => {
-    window.scrollY >= 50 
-    ? (header.classList.add('active'), hideHeader()) 
-    : header.classList.remove('active')
+    if (window.scrollY >= 50) {
+      header.classList.add('active');
+      hideHeader();
+    } else {
+      header.classList.remove('active');
+    };
   });
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/

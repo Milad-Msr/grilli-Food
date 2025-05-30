@@ -1,26 +1,54 @@
-/*=•=•=•=••=•=•=•  Preload  =•=••=•=•=•=•=•=*/
-  const preload = document.querySelector('[data-preload]');
+// const preload = document.querySelector('[data-preload]');
 
-  window.addEventListener('load', () => {
-    preload.classList.add('loaded');
-    document.body.classList.add('loaded');
+// window.addEventListener('load', () => {
+//   preload.classList.add('loaded');
+//   document.body.classList.add('loaded');
+// });
+
+
+/*=•=•=•=••=•=•=•  Preload  =•=••=•=•=•=•=•=*/
+  const preloader = document.querySelector("[data-preload]");
+
+  window.addEventListener("load", function () {
+    preloader.classList.add("loaded");
+    document.body.classList.add("loaded");
   });
+
+
+  const addEventOnElements = function (elements, eventType, callback) {
+    for (let i = 0, len = elements.length; i < len; i++) {
+      elements[i].addEventListener(eventType, callback);
+    }
+  }
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
 
 
 
-/*=•=•=•=••=•=•=•=  Navbar  =•=••=•=•=•=•=•=*/
-  const navbar = document.querySelector('[data-navbar]');
-  const overlay = document.querySelector('[data-overlay]');
-  const navTogglers = document.querySelectorAll('[data-nav-toggler]');
 
-  for (let toggler of navTogglers) {
-    toggler.addEventListener('click', () => {
-      navbar.classList.toggle('active')
-      overlay.classList.toggle('active')
-      document.body.classList.toggle('nav-active')
-    });
-  };
+/*=•=•=•=••=•=•=•=  Navbar  =•=••=•=•=•=•=•=*/
+  const navbar = document.querySelector("[data-navbar]");
+  const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+  const overlay = document.querySelector("[data-overlay]");
+
+  const toggleNavbar = function () {
+    navbar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("nav-active");
+  }
+
+  addEventOnElements(navTogglers, "click", toggleNavbar);
+
+  // const navbar = document.querySelector('[data-navbar]');
+  // const overlay = document.querySelector('[data-overlay]');
+  // const navTogglers = document.querySelectorAll('[data-nav-toggler]');
+
+  // for (let toggler of navTogglers) {
+  //   toggler.addEventListener('click', () => {
+  //     navbar.classList.toggle('active')
+  //     overlay.classList.toggle('active')
+  //     document.body.classList.toggle('nav-active')
+  //   });
+  // };
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
 
 
@@ -45,4 +73,67 @@
       header.classList.remove('active');
     };
   });
+/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
+
+
+
+
+/*=•=•=•=•=•=•=•  Hero Slider  •=•=•=•=•=•=•*/
+  const heroSlider = document.querySelector('[data-hero-slider]');
+  const heroSliderItem = document.querySelectorAll('[data-hero-slider-item]');
+  const heroSliderPrevBtn = document.querySelector('[data-prev-btn]');
+  const heroSliderNextBtn = document.querySelector('[data-next-btn]');
+
+  let currentSlidePos = 0;      
+  let lastActiveSlideItem = heroSliderItem[0];
+
+  const updateSliderPos = () => {
+    lastActiveSlideItem.classList.remove('active');
+    heroSliderItem[currentSlidePos].classList.add('active');
+    lastActiveSlideItem = heroSliderItem[currentSlidePos];
+  }
+
+  const slideNext = () => {
+    if (currentSlidePos >= heroSliderItem.length - 1) {
+      currentSlidePos = 0;
+    } else {
+      currentSlidePos++;
+    };
+    updateSliderPos();
+  };
+
+  const slidePrev = () => {
+    if (currentSlidePos <= 0) { 
+      currentSlidePos = heroSliderItem.length - 1;
+    } else {
+      currentSlidePos--;
+    };
+    updateSliderPos();
+  };
+  
+  heroSliderNextBtn.addEventListener('click', slideNext);
+  heroSliderPrevBtn.addEventListener('click', slideNext);
+/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
+
+
+
+
+/*=•=•=•=•=•=•=•  Auto Slider  •=•=•=•=•=•=•*/
+
+  let autoSliderInterval;
+
+  const autoSlide = () => {
+    autoSliderInterval = setInterval(() => {
+      slideNext();
+    }, 7000)
+  }
+
+  addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], 'mouseover', () => {
+    clearInterval(autoSliderInterval)
+  });
+
+  addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], 'mouseout', autoSlide)
+
+  window.addEventListener('load', autoSlide)
+
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/

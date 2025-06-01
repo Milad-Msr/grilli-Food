@@ -1,34 +1,25 @@
-// const preload = document.querySelector('[data-preload]');
-
-// window.addEventListener('load', () => {
-//   preload.classList.add('loaded');
-//   document.body.classList.add('loaded');
-// });
-
-
 /*=•=•=•=••=•=•=•  Preload  =•=••=•=•=•=•=•=*/
-  const preloader = document.querySelector("[data-preload]");
+  const preload = document.querySelector("[data-preload]");
 
   window.addEventListener("load", function () {
-    preloader.classList.add("loaded");
+    preload.classList.add("loaded");
     document.body.classList.add("loaded");
   });
-
+/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
+  
+  
+  
+  
+/*=•=•=•=••=•=•=•=  Navbar  =•=••=•=•=•=•=•=*/
+  const navbar = document.querySelector("[data-navbar]");
+  const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+  const overlay = document.querySelector("[data-overlay]");
 
   const addEventOnElements = function (elements, eventType, callback) {
     for (let i = 0, len = elements.length; i < len; i++) {
       elements[i].addEventListener(eventType, callback);
     }
   }
-/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
-
-
-
-
-/*=•=•=•=••=•=•=•=  Navbar  =•=••=•=•=•=•=•=*/
-  const navbar = document.querySelector("[data-navbar]");
-  const navTogglers = document.querySelectorAll("[data-nav-toggler]");
-  const overlay = document.querySelector("[data-overlay]");
 
   const toggleNavbar = function () {
     navbar.classList.toggle("active");
@@ -37,18 +28,6 @@
   }
 
   addEventOnElements(navTogglers, "click", toggleNavbar);
-
-  // const navbar = document.querySelector('[data-navbar]');
-  // const overlay = document.querySelector('[data-overlay]');
-  // const navTogglers = document.querySelectorAll('[data-nav-toggler]');
-
-  // for (let toggler of navTogglers) {
-  //   toggler.addEventListener('click', () => {
-  //     navbar.classList.toggle('active')
-  //     overlay.classList.toggle('active')
-  //     document.body.classList.toggle('nav-active')
-  //   });
-  // };
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
 
 
@@ -119,7 +98,6 @@
 
 
 /*=•=•=•=•=•=•=•  Auto Slider  •=•=•=•=•=•=•*/
-
   let autoSliderInterval;
 
   const autoSlide = () => {
@@ -133,7 +111,15 @@
   });
 
   addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], 'mouseout', autoSlide)
-
   window.addEventListener('load', autoSlide)
+/*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
+
+
+
+
+
+/*=•=•=•=•=•=•=•  Auto Slider  •=•=•=•=•=•=•*/
+
+
 
 /*•=•=•=•=••=•=•=•=••=•=•=•=•=••=•=•=•=••=•=*/
